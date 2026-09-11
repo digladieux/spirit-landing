@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.production
+.DS_Store
+
+# Document de stratégie client — ne pas publier sur un repo public
+docs/

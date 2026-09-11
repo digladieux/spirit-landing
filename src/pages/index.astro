@@ -1,0 +1,1017 @@
+---
+import Waitlist from '../components/Waitlist.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const piliers = [
+  {
+    titre: 'Récupération',
+    texte:
+      'Reconstituer ce qu’une journée exigeante a mobilisé, au lieu de puiser dans la réserve suivante.',
+  },
+  {
+    titre: 'Énergie stable',
+    texte:
+      'Une disponibilité physique qui tient sur la durée, sans le pic et la chute d’un stimulant.',
+  },
+  {
+    titre: 'Concentration',
+    texte:
+      'Soutenir les fonctions cognitives sollicitées quand les décisions s’enchaînent.',
+  },
+  {
+    titre: 'Lucidité',
+    texte:
+      'Garder sa capacité à hiérarchiser, arbitrer et décider juste, y compris en période dense.',
+  },
+];
+
+const pains = [
+  {
+    num: '01',
+    titre: 'Vous ne récupérez plus entre deux périodes',
+    texte:
+      'La charge s’enchaîne. Le week-end ne suffit plus à refaire le plein. Vos ressources se consomment plus vite qu’elles ne se reconstituent.',
+  },
+  {
+    num: '02',
+    titre: 'Votre lucidité se dérobe quand vous en avez le plus besoin',
+    texte:
+      'Difficulté à prioriser, à trancher, à tenir le fil. Ce n’est pas un manque de compétence : c’est une ressource qui manque.',
+  },
+  {
+    num: '03',
+    titre: 'Vous n’êtes plus vraiment disponible pour vos proches',
+    texte:
+      'Physiquement là, mentalement ailleurs. C’est souvent le premier signal que l’on remarque — et le plus coûteux.',
+  },
+  {
+    num: '04',
+    titre: 'Votre routine saute dès que ça devient chargé',
+    texte:
+      'Cinq flacons, trois horaires, deux oublis. Au moment précis où vous en auriez le plus besoin, tout s’arrête.',
+  },
+];
+
+const faq = [
+  {
+    q: 'En quoi est-ce différent d’un magnésium ou d’un complexe vitaminé&nbsp;?',
+    r: 'Un magnésium agit sur un facteur. Un multivitamine couvre des apports. SPIRIT est construit autour d’un objectif — préserver et restaurer vos ressources — et réunit dans une même formule les leviers qui y concourent, pour que vous n’ayez pas à les empiler vous-même.',
+  },
+  {
+    q: 'Est-ce une marque anti-stress&nbsp;?',
+    r: 'Non. Le stress peut être un levier de formulation, pas notre territoire. Nous ne cherchons pas à vous rendre une charge supportable : nous cherchons à préserver les ressources que cette charge mobilise.',
+  },
+  {
+    q: 'Combien de temps avant de ressentir quelque chose&nbsp;?',
+    r: 'Nous ne promettrons pas d’effet en 48 heures. Une complémentation nutritionnelle se juge sur plusieurs semaines de prise régulière — c’est précisément pour ça que nous concevons le format autour de l’observance avant tout.',
+  },
+  {
+    q: 'Quelle sera la composition exacte&nbsp;?',
+    r: 'La formulation est en cours. Elle sera publiée intégralement : chaque actif, chaque dosage, chaque source. Pas de mélange propriétaire, pas de dosage décoratif.',
+  },
+  {
+    q: 'Que devient mon adresse email&nbsp;?',
+    r: 'Elle sert à vous prévenir du lancement et, si vous le souhaitez, à vous poser deux ou trois questions pour affiner le produit. Elle n’est ni revendue, ni partagée. Désinscription en un clic.',
+  },
+];
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <title>SPIRIT — Préserver et restaurer ses ressources</title>
+    <meta
+      name="description"
+      content="SPIRIT conçoit une gamme de compléments alimentaires pour les femmes dont le quotidien exigeant mobilise fortement les ressources physiques et mentales. Récupération, énergie stable, concentration, lucidité — en une seule prise quotidienne."
+    />
+    <meta property="og:title" content="SPIRIT — Préserver et restaurer ses ressources" />
+    <meta
+      property="og:description"
+      content="Une formule unique pensée pour les femmes actives. Moins de 30 secondes par jour. Rejoignez la liste d’accès prioritaire."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+
+    <header class="header">
+      <div class="shell header-inner">
+        <a class="logo" href="#top" aria-label="SPIRIT, accueil">SPIRIT</a>
+        <nav aria-label="Principal">
+          <a href="#approche">L’approche</a>
+          <a href="#rituel">Le rituel</a>
+          <a href="#faq">Questions</a>
+        </nav>
+        <a class="btn-ghost" href="#liste">Rejoindre la liste</a>
+      </div>
+    </header>
+
+    <main id="contenu">
+      <!-- ───────────────────────── HERO ───────────────────────── -->
+      <section class="hero" id="top">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Projet en cours de validation — pas encore commercialisé</p>
+            <h1>
+              Préserver ses ressources,<br />
+              <em>plutôt qu’apprendre à tenir.</em>
+            </h1>
+            <p class="lead">
+              SPIRIT conçoit une gamme de compléments alimentaires pour les femmes dont le
+              quotidien — professionnel comme personnel — mobilise fortement les ressources
+              physiques et mentales. Une formule unique, qui agit sur les quatre leviers à la
+              fois, en moins de 30 secondes par jour.
+            </p>
+
+            <Waitlist id="hero" variant="compact" />
+
+            <ul class="trust">
+              <li>Formulation en cours, publiée en intégralité</li>
+              <li>Une prise, pas une étagère</li>
+              <li>Conçu avec des femmes concernées</li>
+            </ul>
+          </div>
+
+          <figure class="hero-viz" aria-labelledby="viz-legende">
+            <svg viewBox="0 0 420 372" role="img" aria-label="Courbe illustrant l’épuisement progressif des ressources, puis leur préservation">
+              <defs>
+                <linearGradient id="fadeSage" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#4C5F52" stop-opacity="0.16" />
+                  <stop offset="100%" stop-color="#4C5F52" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+
+              <!-- grille -->
+              <g stroke="#1B201C" stroke-opacity="0.08">
+                <line x1="30" y1="70" x2="400" y2="70" />
+                <line x1="30" y1="140" x2="400" y2="140" />
+                <line x1="30" y1="210" x2="400" y2="210" />
+                <line x1="30" y1="280" x2="400" y2="280" />
+              </g>
+
+              <!-- trajectoire sans soutien : dents de scie descendantes -->
+              <path
+                d="M30 95 L75 150 L110 122 L155 190 L190 168 L235 238 L270 222 L315 288 L350 278 L395 318"
+                fill="none"
+                stroke="#C0765A"
+                stroke-width="1.6"
+                stroke-dasharray="5 4"
+                stroke-linejoin="round"
+              />
+
+              <!-- trajectoire soutenue : ondulation qui se maintient -->
+              <path
+                d="M30 95 L75 140 L110 100 L155 146 L190 104 L235 150 L270 106 L315 150 L350 108 L395 142 L395 340 L30 340 Z"
+                fill="url(#fadeSage)"
+                stroke="none"
+              />
+              <path
+                d="M30 95 L75 140 L110 100 L155 146 L190 104 L235 150 L270 106 L315 150 L350 108 L395 142"
+                fill="none"
+                stroke="#4C5F52"
+                stroke-width="2.2"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+              />
+
+              <circle cx="30" cy="95" r="4" fill="#1B201C" />
+              <circle cx="395" cy="142" r="5" fill="#4C5F52" />
+              <circle cx="395" cy="318" r="4" fill="#C0765A" />
+
+              <text x="30" y="58" class="viz-label">niveau de ressources</text>
+
+              <!-- légende sous le graphe, pour ne croiser aucune courbe -->
+              <g>
+                <line x1="30" y1="355" x2="52" y2="355" stroke="#4C5F52" stroke-width="2.2" />
+                <text x="60" y="359" class="viz-label">ressources préservées</text>
+                <line x1="216" y1="355" x2="238" y2="355" stroke="#C0765A" stroke-width="1.6" stroke-dasharray="5 4" />
+                <text x="246" y="359" class="viz-label viz-label--clay">ressources épuisées</text>
+              </g>
+            </svg>
+            <figcaption id="viz-legende">
+              Même charge, deux trajectoires. Le territoire de SPIRIT est l’écart entre les deux.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ───────────────── PILIERS ───────────────── -->
+      <section class="piliers" aria-label="Les quatre bénéfices">
+        <div class="shell">
+          <div class="piliers-grid">
+            {
+              piliers.map((p) => (
+                <article class="pilier">
+                  <h2>{p.titre}</h2>
+                  <p>{p.texte}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────── PAINS ───────────────── -->
+      <section class="section" id="constat">
+        <div class="shell">
+          <p class="kicker">Le constat</p>
+          <h2 class="h2">
+            Ce n’est pas la charge qui vous use.<br />
+            C’est de ne plus avoir le temps de vous recharger.
+          </h2>
+
+          <div class="pains">
+            {
+              pains.map((p) => (
+                <article class="pain">
+                  <span class="pain-num">{p.num}</span>
+                  <h3>{p.titre}</h3>
+                  <p>{p.texte}</p>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────── POSITIONNEMENT ───────────────── -->
+      <section class="section manifesto" id="approche">
+        <div class="shell narrow">
+          <p class="kicker">Notre position</p>
+          <p class="manifesto-lead">
+            SPIRIT ne cherche pas à augmenter la quantité de pression que vous pouvez
+            supporter, ni à rendre supportable une charge qui ne l’est pas.
+          </p>
+          <p class="manifesto-body">
+            Une partie des causes est organisationnelle, et elle ne se règle pas avec une
+            gélule — nous ne prétendrons pas le contraire. Notre terrain se situe dans
+            l’après : soutenir la préservation et la reconstitution des ressources physiques
+            et mentales que votre quotidien mobilise. Pas vous aider à «&nbsp;tenir
+            davantage&nbsp;», mais préserver ce dont vous avez besoin pour continuer à vivre
+            pleinement toutes les dimensions de votre vie.
+          </p>
+          <p class="signature">Le principe de marque SPIRIT</p>
+        </div>
+      </section>
+
+      <!-- ───────────────── UNE FORMULE ───────────────── -->
+      <section class="section" id="formule">
+        <div class="shell">
+          <p class="kicker">La différence</p>
+          <h2 class="h2">Une formule, pas une étagère.</h2>
+          <p class="section-lead">
+            Aujourd’hui, il faut choisir : empiler plusieurs compléments — et abandonner au
+            bout de six semaines — ou n’en prendre qu’un, qui n’agira que sur un seul des
+            facteurs en jeu. Nous refusons ce compromis.
+          </p>
+
+          <div class="compare">
+            <article class="compare-card">
+              <h3>La routine habituelle</h3>
+              <ul class="list-minus">
+                <li>Un produit par symptôme : sommeil, fatigue, stress, concentration</li>
+                <li>Plusieurs prises réparties dans la journée</li>
+                <li>Des dosages qui se recoupent sans qu’on le sache</li>
+                <li>Une observance qui s’effondre en période chargée</li>
+                <li>Un budget qui grimpe à mesure qu’on ajoute des flacons</li>
+              </ul>
+            </article>
+
+            <article class="compare-card compare-card--hero">
+              <h3>Avec SPIRIT</h3>
+              <ul class="list-plus">
+                <li>Un à deux compléments, conçus pour agir ensemble</li>
+                <li>Une seule prise quotidienne, en moins de 30 secondes</li>
+                <li>Les quatre leviers dans une même formule cohérente</li>
+                <li>Un rituel pensé pour tenir, surtout quand ça devient dense</li>
+                <li>Composition affichée intégralement, sans mélange propriétaire</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────── RITUEL ───────────────── -->
+      <section class="section rituel" id="rituel">
+        <div class="shell">
+          <p class="kicker">Le rituel</p>
+          <h2 class="h2">Moins de 30 secondes. Tous les jours. Même les pires.</h2>
+          <p class="section-lead">
+            Le meilleur complément est celui que vous prenez encore dans huit mois. Nous
+            concevons donc le format, le goût et le moment de prise avant de concevoir
+            l’argumentaire.
+          </p>
+
+          <ol class="steps">
+            <li>
+              <span class="step-num">1</span>
+              <h3>Un moment, toujours le même</h3>
+              <p>
+                Accroché à un geste que vous faites déjà. Rien à planifier, rien à se
+                rappeler.
+              </p>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <h3>Une prise, pas quatre</h3>
+              <p>
+                Tout est réuni dans la même formule. Aucun arbitrage à faire un lundi
+                matin difficile.
+              </p>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <h3>On continue, surtout quand ça charge</h3>
+              <p>
+                C’est exactement au moment où votre routine saute que vos ressources en ont
+                le plus besoin.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ───────────────── POUR QUI ───────────────── -->
+      <section class="section pourqui">
+        <div class="shell narrow">
+          <p class="kicker">Pour qui</p>
+          <h2 class="h2">Vous vous reconnaissez&nbsp;?</h2>
+          <p class="section-lead">
+            SPIRIT s’adresse aux femmes actives dont le quotidien sollicite fortement les
+            ressources. En premier lieu, à celles qui portent des responsabilités dont les
+            décisions engagent d’autres qu’elles-mêmes : dirigeantes, entrepreneures, cadres,
+            indépendantes.
+          </p>
+          <ul class="check">
+            <li>Vos journées enchaînent des décisions qui ont des conséquences réelles.</li>
+            <li>Vous tenez, mais vous sentez que la réserve ne se refait plus.</li>
+            <li>Vous voulez agir avant que les signaux deviennent difficiles à ignorer.</li>
+            <li>Vous n’avez ni le temps ni l’envie d’une routine à cinq étapes.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ───────────────── FAQ ───────────────── -->
+      <section class="section" id="faq">
+        <div class="shell narrow">
+          <p class="kicker">Questions</p>
+          <h2 class="h2">Ce qu’on nous demande</h2>
+          <div class="faq">
+            {
+              faq.map((item) => (
+                <details>
+                  <summary><span set:html={item.q} /></summary>
+                  <p>{item.r}</p>
+                </details>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- ───────────────── CTA FINAL ───────────────── -->
+      <section class="cta" id="liste">
+        <div class="shell narrow cta-inner">
+          <p class="kicker kicker--light">Accès prioritaire</p>
+          <h2>Nous construisons SPIRIT avec celles que ça concerne.</h2>
+          <p class="cta-lead">
+            Laissez votre email : vous serez prévenue au lancement, et vous aurez voix au
+            chapitre sur la formule, le format et le prix. Aucune obligation d’achat, jamais.
+          </p>
+
+          <Waitlist id="final" variant="full dark" />
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell footer-inner">
+        <p class="logo">SPIRIT</p>
+        <p class="disclaimer">
+          SPIRIT est un projet en cours de conception&nbsp;: aucun produit n’est actuellement
+          commercialisé. Les compléments alimentaires ne se substituent pas à une alimentation
+          variée et équilibrée ni à un mode de vie sain. Ils ne constituent pas un traitement
+          et ne remplacent pas un avis médical. En cas de fatigue persistante, consultez un
+          professionnel de santé.
+        </p>
+        <p class="copy">© {new Date().getFullYear()} SPIRIT — Page de test d’intérêt</p>
+      </div>
+    </footer>
+
+    <style is:global>
+      :root {
+        --cream: #f7f4ed;
+        --cream-2: #efeade;
+        --surface: #fffdf9;
+        --ink: #1b201c;
+        --ink-soft: #5c665e;
+        --sage: #4c5f52;
+        --sage-soft: #8ca08f;
+        --clay: #c0765a;
+        --line: #ddd6c7;
+
+        --shell: 72rem;
+        --serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+        --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 1rem;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img,
+      svg {
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .shell {
+        width: 100%;
+        max-width: var(--shell);
+        margin-inline: auto;
+        padding-inline: 1.5rem;
+      }
+
+      .shell.narrow {
+        max-width: 46rem;
+      }
+
+      .skip {
+        position: absolute;
+        left: -9999px;
+      }
+
+      .skip:focus {
+        left: 1rem;
+        top: 1rem;
+        z-index: 50;
+        background: var(--ink);
+        color: var(--cream);
+        padding: 0.6rem 1rem;
+        border-radius: 0.4rem;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--sage);
+        outline-offset: 3px;
+      }
+
+      /* ── Header ── */
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: color-mix(in srgb, var(--cream) 88%, transparent);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block: 1rem;
+      }
+
+      .logo {
+        font-family: var(--serif);
+        font-size: 1.15rem;
+        font-weight: 500;
+        letter-spacing: 0.24em;
+        text-decoration: none;
+        margin: 0;
+      }
+
+      .header nav {
+        display: none;
+        gap: 2rem;
+        font-size: 0.9rem;
+      }
+
+      .header nav a {
+        text-decoration: none;
+        color: var(--ink-soft);
+        transition: color 0.15s ease;
+      }
+
+      .header nav a:hover {
+        color: var(--ink);
+      }
+
+      .btn-ghost {
+        border: 1px solid var(--ink);
+        border-radius: 999px;
+        padding: 0.55rem 1.15rem;
+        font-size: 0.85rem;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+
+      .btn-ghost:hover {
+        background: var(--ink);
+        color: var(--cream);
+      }
+
+      @media (min-width: 60rem) {
+        .header nav {
+          display: flex;
+        }
+      }
+
+      /* ── Typo commune ── */
+      .eyebrow {
+        display: inline-block;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.35rem 0.9rem;
+        margin: 0 0 1.75rem;
+      }
+
+      .kicker {
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--sage);
+        margin: 0 0 1rem;
+      }
+
+      .kicker--light {
+        color: var(--sage-soft);
+      }
+
+      h1 {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-size: clamp(2.4rem, 6vw, 4rem);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        margin: 0 0 1.5rem;
+      }
+
+      h1 em {
+        font-style: italic;
+        color: var(--sage);
+      }
+
+      .h2 {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+        line-height: 1.18;
+        letter-spacing: -0.015em;
+        margin: 0 0 1.25rem;
+      }
+
+      .lead {
+        font-size: clamp(1.02rem, 1.6vw, 1.18rem);
+        color: var(--ink-soft);
+        max-width: 34rem;
+        margin: 0 0 2.25rem;
+      }
+
+      .section-lead {
+        font-size: 1.05rem;
+        color: var(--ink-soft);
+        max-width: 42rem;
+        margin: 0 0 3rem;
+      }
+
+      .section {
+        padding-block: clamp(4.5rem, 10vw, 7.5rem);
+      }
+
+      /* ── Hero ── */
+      .hero {
+        padding-block: clamp(3.5rem, 8vw, 6.5rem) clamp(3rem, 6vw, 5rem);
+      }
+
+      .hero-grid {
+        display: grid;
+        gap: clamp(3rem, 6vw, 4.5rem);
+        align-items: center;
+      }
+
+      @media (min-width: 62rem) {
+        .hero-grid {
+          grid-template-columns: 1.1fr 0.9fr;
+        }
+      }
+
+      .trust {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        padding: 0;
+        margin: 2.25rem 0 0;
+        font-size: 0.82rem;
+        color: var(--ink-soft);
+      }
+
+      .trust li::before {
+        content: '—';
+        margin-right: 0.5rem;
+        color: var(--sage-soft);
+      }
+
+      .hero-viz {
+        margin: 0;
+      }
+
+      .hero-viz svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .viz-label {
+        font-family: var(--sans);
+        font-size: 11px;
+        fill: var(--ink-soft);
+        letter-spacing: 0.04em;
+      }
+
+      .viz-label--clay {
+        fill: var(--clay);
+      }
+
+      .hero-viz figcaption {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        color: var(--ink-soft);
+        max-width: 26rem;
+      }
+
+      /* ── Piliers ── */
+      .piliers {
+        background: var(--ink);
+        color: var(--cream);
+        padding-block: clamp(3rem, 6vw, 4.5rem);
+      }
+
+      .piliers-grid {
+        display: grid;
+        gap: 2.5rem;
+      }
+
+      @media (min-width: 40rem) {
+        .piliers-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 64rem) {
+        .piliers-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      .pilier h2 {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-size: 1.4rem;
+        margin: 0 0 0.6rem;
+      }
+
+      .pilier p {
+        margin: 0;
+        font-size: 0.92rem;
+        color: color-mix(in srgb, var(--cream) 70%, transparent);
+      }
+
+      /* ── Pains ── */
+      .pains {
+        display: grid;
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        overflow: hidden;
+        margin-top: 3rem;
+      }
+
+      @media (min-width: 48rem) {
+        .pains {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .pain {
+        background: var(--surface);
+        padding: clamp(1.75rem, 3vw, 2.5rem);
+      }
+
+      .pain-num {
+        font-family: var(--serif);
+        font-size: 0.85rem;
+        color: var(--sage-soft);
+        letter-spacing: 0.1em;
+      }
+
+      .pain h3 {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-size: 1.3rem;
+        line-height: 1.3;
+        margin: 0.75rem 0 0.75rem;
+      }
+
+      .pain p {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 0.95rem;
+      }
+
+      /* ── Manifesto ── */
+      .manifesto {
+        background: var(--cream-2);
+      }
+
+      .manifesto-lead {
+        font-family: var(--serif);
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        line-height: 1.35;
+        margin: 0 0 1.75rem;
+      }
+
+      .manifesto-body {
+        font-size: 1.05rem;
+        color: var(--ink-soft);
+        margin: 0 0 2rem;
+      }
+
+      .signature {
+        font-size: 0.78rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--sage);
+        margin: 0;
+      }
+
+      /* ── Comparaison ── */
+      .compare {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 52rem) {
+        .compare {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      .compare-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
+        padding: clamp(1.75rem, 3vw, 2.5rem);
+      }
+
+      .compare-card--hero {
+        background: var(--sage);
+        border-color: var(--sage);
+        color: var(--cream);
+      }
+
+      .compare-card h3 {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-size: 1.35rem;
+        margin: 0 0 1.5rem;
+      }
+
+      .compare-card ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 0.9rem;
+        font-size: 0.95rem;
+      }
+
+      .compare-card li {
+        display: grid;
+        grid-template-columns: 1.25rem 1fr;
+        gap: 0.5rem;
+        align-items: start;
+      }
+
+      .list-minus li {
+        color: var(--ink-soft);
+      }
+
+      .list-minus li::before {
+        content: '×';
+        color: var(--clay);
+        font-size: 1.05rem;
+        line-height: 1.45;
+      }
+
+      .list-plus li::before {
+        content: '✓';
+        color: color-mix(in srgb, var(--cream) 80%, transparent);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      /* ── Rituel ── */
+      .rituel {
+        background: var(--cream-2);
+      }
+
+      .steps {
+        list-style: none;
+        counter-reset: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 2.5rem;
+      }
+
+      @media (min-width: 52rem) {
+        .steps {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 3rem;
+        }
+      }
+
+      .step-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 999px;
+        border: 1px solid var(--sage);
+        color: var(--sage);
+        font-family: var(--serif);
+        font-size: 0.95rem;
+      }
+
+      .steps h3 {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-size: 1.25rem;
+        margin: 1rem 0 0.5rem;
+      }
+
+      .steps p {
+        margin: 0;
+        color: var(--ink-soft);
+        font-size: 0.95rem;
+      }
+
+      /* ── Pour qui ── */
+      .check {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 1rem;
+      }
+
+      .check li {
+        display: grid;
+        grid-template-columns: 1.5rem 1fr;
+        gap: 0.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--line);
+        color: var(--ink-soft);
+      }
+
+      .check li::before {
+        content: '✓';
+        color: var(--sage);
+      }
+
+      /* ── FAQ ── */
+      .faq details {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .faq summary {
+        cursor: pointer;
+        list-style: none;
+        padding: 1.25rem 2.5rem 1.25rem 0;
+        position: relative;
+        font-family: var(--serif);
+        font-size: 1.08rem;
+      }
+
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq summary::after {
+        content: '+';
+        position: absolute;
+        right: 0.25rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--sage);
+        font-size: 1.3rem;
+      }
+
+      .faq details[open] summary::after {
+        content: '–';
+      }
+
+      .faq details p {
+        margin: 0 0 1.5rem;
+        color: var(--ink-soft);
+        font-size: 0.97rem;
+        max-width: 40rem;
+      }
+
+      /* ── CTA ── */
+      .cta {
+        background: var(--ink);
+        color: var(--cream);
+        padding-block: clamp(4.5rem, 10vw, 7rem);
+      }
+
+      .cta-inner h2 {
+        font-family: var(--serif);
+        font-weight: 400;
+        font-size: clamp(1.8rem, 4vw, 2.75rem);
+        line-height: 1.18;
+        margin: 0 0 1.25rem;
+      }
+
+      .cta-lead {
+        color: color-mix(in srgb, var(--cream) 72%, transparent);
+        max-width: 38rem;
+        margin: 0 0 2.5rem;
+      }
+
+      /* ── Footer ── */
+      .footer {
+        background: var(--ink);
+        color: color-mix(in srgb, var(--cream) 60%, transparent);
+        border-top: 1px solid color-mix(in srgb, var(--cream) 12%, transparent);
+        padding-block: 3rem;
+      }
+
+      .footer-inner {
+        display: grid;
+        gap: 1.25rem;
+      }
+
+      .footer .logo {
+        color: var(--cream);
+      }
+
+      .disclaimer {
+        font-size: 0.78rem;
+        line-height: 1.65;
+        max-width: 52rem;
+        margin: 0;
+      }
+
+      .copy {
+        font-size: 0.78rem;
+        margin: 0;
+      }
+    </style>
+  </body>
+</html>

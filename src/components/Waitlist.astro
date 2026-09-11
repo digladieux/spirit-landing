@@ -1,0 +1,261 @@
+---
+// Endpoint Formspree (ou équivalent). Défini via la variable GitHub PUBLIC_FORM_ENDPOINT.
+// ponytail: pas de backend, le test d'intérêt n'a besoin que d'une liste d'emails.
+const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
+const { variant = 'full', id } = Astro.props;
+---
+
+<form
+  class:list={['waitlist', variant]}
+  data-waitlist
+  data-endpoint={endpoint}
+  action={endpoint}
+  method="POST"
+  id={id}
+>
+  <div class="row">
+    <label class="sr-only" for={`email-${id}`}>Votre adresse email</label>
+    <input
+      id={`email-${id}`}
+      type="email"
+      name="email"
+      required
+      autocomplete="email"
+      placeholder="votre@email.com"
+    />
+    <button type="submit">Rejoindre la liste</button>
+  </div>
+
+  {variant.includes('full') && (
+    <div class="qualify">
+      <label for={`besoin-${id}`}>Aujourd'hui, ce qui vous manque le plus&nbsp;:</label>
+      <select id={`besoin-${id}`} name="besoin">
+        <option value="">— je préfère ne pas répondre —</option>
+        <option>Récupérer vraiment entre deux périodes chargées</option>
+        <option>Une énergie plus stable dans la journée</option>
+        <option>De la concentration et de la clarté mentale</option>
+        <option>Tenir une routine dans la durée</option>
+        <option>Arrêter de jongler avec plusieurs compléments</option>
+      </select>
+    </div>
+  )}
+
+  <!-- Anti-spam : champ invisible que seuls les bots remplissent -->
+  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="gotcha" />
+
+  <p class="note">
+    Pas de spam. Un email au lancement, et rien d'autre. Désinscription en un clic.
+  </p>
+  <p class="feedback" role="status" aria-live="polite"></p>
+</form>
+
+<style>
+  .waitlist {
+    width: 100%;
+    max-width: 34rem;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.4rem 0.4rem 0.4rem 1.25rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .row:focus-within {
+    border-color: var(--sage);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--sage) 14%, transparent);
+  }
+
+  input[type='email'] {
+    flex: 1 1 12rem;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    font-size: 1rem;
+    color: var(--ink);
+    padding: 0.7rem 0;
+  }
+
+  input[type='email']:focus {
+    outline: none;
+  }
+
+  input[type='email']::placeholder {
+    color: color-mix(in srgb, var(--ink) 40%, transparent);
+  }
+
+  button {
+    flex: 0 0 auto;
+    border: 0;
+    border-radius: 999px;
+    background: var(--sage);
+    color: var(--cream);
+    font: inherit;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    padding: 0.85rem 1.6rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+
+  button:hover {
+    background: var(--ink);
+  }
+
+  button:active {
+    transform: scale(0.98);
+  }
+
+  button[disabled] {
+    opacity: 0.55;
+    cursor: progress;
+  }
+
+  .qualify {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .qualify label {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  select {
+    font: inherit;
+    font-size: 0.92rem;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 0.7rem;
+    padding: 0.7rem 0.9rem;
+    width: 100%;
+  }
+
+  select:focus-visible {
+    outline: 2px solid var(--sage);
+    outline-offset: 1px;
+  }
+
+  .note {
+    margin: 0.9rem 0 0;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+
+  .feedback {
+    margin: 0.6rem 0 0;
+    font-size: 0.9rem;
+    min-height: 1.2em;
+  }
+
+  .feedback[data-state='ok'] {
+    color: var(--sage);
+    font-weight: 500;
+  }
+
+  .feedback[data-state='ko'] {
+    color: var(--clay);
+  }
+
+  .gotcha {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* Variante posée sur fond sombre (section finale) */
+  .waitlist.dark .row {
+    background: color-mix(in srgb, var(--cream) 10%, transparent);
+    border-color: color-mix(in srgb, var(--cream) 25%, transparent);
+  }
+  .waitlist.dark input[type='email'] {
+    color: var(--cream);
+  }
+  .waitlist.dark input[type='email']::placeholder {
+    color: color-mix(in srgb, var(--cream) 50%, transparent);
+  }
+  .waitlist.dark button {
+    background: var(--cream);
+    color: var(--ink);
+  }
+  .waitlist.dark button:hover {
+    background: #fff;
+  }
+  .waitlist.dark .note,
+  .waitlist.dark .qualify label {
+    color: color-mix(in srgb, var(--cream) 65%, transparent);
+  }
+  .waitlist.dark select {
+    background: color-mix(in srgb, var(--cream) 10%, transparent);
+    border-color: color-mix(in srgb, var(--cream) 25%, transparent);
+    color: var(--cream);
+  }
+  .waitlist.dark .feedback[data-state='ok'] {
+    color: var(--cream);
+  }
+</style>
+
+<script>
+  document.querySelectorAll('form[data-waitlist]').forEach((form) => {
+    const el = form as HTMLFormElement;
+    const feedback = el.querySelector('.feedback') as HTMLElement;
+    const button = el.querySelector('button') as HTMLButtonElement;
+
+    el.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const endpoint = el.dataset.endpoint;
+
+      if (!endpoint) {
+        feedback.dataset.state = 'ko';
+        feedback.textContent =
+          'Formulaire non configuré : renseignez PUBLIC_FORM_ENDPOINT (voir README).';
+        return;
+      }
+
+      button.disabled = true;
+      feedback.dataset.state = '';
+      feedback.textContent = 'Envoi…';
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: new FormData(el),
+          headers: { Accept: 'application/json' },
+        });
+
+        if (!response.ok) throw new Error(String(response.status));
+
+        el.reset();
+        feedback.dataset.state = 'ok';
+        feedback.textContent = 'C’est noté. Vous serez prévenue en premier.';
+      } catch {
+        feedback.dataset.state = 'ko';
+        feedback.textContent =
+          'L’envoi a échoué. Réessayez, ou écrivez-nous directement.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+</script>
