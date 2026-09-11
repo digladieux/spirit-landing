@@ -21,14 +21,14 @@ const { variant = 'full', id } = Astro.props;
       name="email"
       required
       autocomplete="email"
-      placeholder="votre@email.com"
+      placeholder="Votre adresse email"
     />
     <button type="submit">Rejoindre la liste</button>
   </div>
 
   {variant.includes('full') && (
     <div class="qualify">
-      <label for={`besoin-${id}`}>Aujourd'hui, ce qui vous manque le plus&nbsp;:</label>
+      <label for={`besoin-${id}`}>Aujourd'hui, ce qui vous manque le plus</label>
       <select id={`besoin-${id}`} name="besoin">
         <option value="">— je préfère ne pas répondre —</option>
         <option>Récupérer vraiment entre deux périodes chargées</option>
@@ -43,9 +43,7 @@ const { variant = 'full', id } = Astro.props;
   <!-- Anti-spam : champ invisible que seuls les bots remplissent -->
   <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" class="gotcha" />
 
-  <p class="note">
-    Pas de spam. Un email au lancement, et rien d'autre. Désinscription en un clic.
-  </p>
+  <p class="note">Accès prioritaire au lancement. Pas de spam, désinscription en un clic.</p>
   <p class="feedback" role="status" aria-live="polite"></p>
 </form>
 
@@ -55,62 +53,52 @@ const { variant = 'full', id } = Astro.props;
     max-width: 34rem;
   }
 
+  .waitlist.full {
+    margin-inline: auto;
+    text-align: left;
+  }
+
   .row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 0.4rem 0.4rem 0.4rem 1.25rem;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .row:focus-within {
-    border-color: var(--sage);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--sage) 14%, transparent);
+    gap: 10px;
   }
 
   input[type='email'] {
-    flex: 1 1 12rem;
+    flex: 1 1 14rem;
     min-width: 0;
-    border: 0;
-    background: transparent;
+    padding: 15px 18px;
+    border: 1px solid var(--field);
+    background: #fff;
     font: inherit;
-    font-size: 1rem;
+    font-size: 15px;
     color: var(--ink);
-    padding: 0.7rem 0;
   }
 
   input[type='email']:focus {
     outline: none;
+    border-color: var(--ink);
   }
 
   input[type='email']::placeholder {
-    color: color-mix(in srgb, var(--ink) 40%, transparent);
+    color: #8d887f;
   }
 
   button {
     flex: 0 0 auto;
-    border: 0;
-    border-radius: 999px;
-    background: var(--sage);
-    color: var(--cream);
+    padding: 15px 28px;
+    border: none;
+    background: var(--ink);
+    color: #f6f4ef;
     font: inherit;
-    font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: 0.01em;
-    padding: 0.85rem 1.6rem;
+    font-size: 15px;
+    letter-spacing: 0.02em;
     cursor: pointer;
-    transition: background 0.2s ease, transform 0.15s ease;
+    transition: background 0.2s ease;
   }
 
   button:hover {
-    background: var(--ink);
-  }
-
-  button:active {
-    transform: scale(0.98);
+    background: var(--accent);
   }
 
   button[disabled] {
@@ -119,52 +107,55 @@ const { variant = 'full', id } = Astro.props;
   }
 
   .qualify {
-    margin-top: 1rem;
+    margin-top: 14px;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 6px;
   }
 
   .qualify label {
-    font-size: 0.85rem;
-    color: var(--ink-soft);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-2);
   }
 
   select {
     font: inherit;
-    font-size: 0.92rem;
+    font-size: 15px;
     color: var(--ink);
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 0.7rem;
-    padding: 0.7rem 0.9rem;
+    background: #fff;
+    border: 1px solid var(--field);
+    padding: 13px 16px;
     width: 100%;
+    border-radius: 0;
   }
 
   select:focus-visible {
-    outline: 2px solid var(--sage);
+    outline: 2px solid var(--accent);
     outline-offset: 1px;
   }
 
   .note {
-    margin: 0.9rem 0 0;
-    font-size: 0.8rem;
-    color: var(--ink-soft);
+    margin: 12px 0 0;
+    font-size: 13px;
+    color: var(--muted-2);
   }
 
   .feedback {
-    margin: 0.6rem 0 0;
-    font-size: 0.9rem;
+    margin: 8px 0 0;
+    font-size: 14px;
     min-height: 1.2em;
   }
 
   .feedback[data-state='ok'] {
-    color: var(--sage);
-    font-weight: 500;
+    color: var(--ink);
+    font-weight: 600;
   }
 
   .feedback[data-state='ko'] {
-    color: var(--clay);
+    color: var(--accent);
   }
 
   .gotcha {
@@ -182,37 +173,6 @@ const { variant = 'full', id } = Astro.props;
     overflow: hidden;
     clip-path: inset(50%);
     white-space: nowrap;
-  }
-
-  /* Variante posée sur fond sombre (section finale) */
-  .waitlist.dark .row {
-    background: color-mix(in srgb, var(--cream) 10%, transparent);
-    border-color: color-mix(in srgb, var(--cream) 25%, transparent);
-  }
-  .waitlist.dark input[type='email'] {
-    color: var(--cream);
-  }
-  .waitlist.dark input[type='email']::placeholder {
-    color: color-mix(in srgb, var(--cream) 50%, transparent);
-  }
-  .waitlist.dark button {
-    background: var(--cream);
-    color: var(--ink);
-  }
-  .waitlist.dark button:hover {
-    background: #fff;
-  }
-  .waitlist.dark .note,
-  .waitlist.dark .qualify label {
-    color: color-mix(in srgb, var(--cream) 65%, transparent);
-  }
-  .waitlist.dark select {
-    background: color-mix(in srgb, var(--cream) 10%, transparent);
-    border-color: color-mix(in srgb, var(--cream) 25%, transparent);
-    color: var(--cream);
-  }
-  .waitlist.dark .feedback[data-state='ok'] {
-    color: var(--cream);
   }
 </style>
 

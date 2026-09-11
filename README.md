@@ -8,6 +8,14 @@ Contenu dérivé du *Value Proposition Canvas* (document interne, non versionné
 « préserver et restaurer ses ressources », bénéfices Récupération / Énergie stable /
 Concentration / Lucidité, différenciation par la formule unique et l'observance.
 
+**Direction artistique :** variante **1A « Éditorial clair »** de la maquette Claude Design
+(`docs/SPIRIT Landing.dc.html`, non versionné). Fond `#f6f4ef`, encre `#1c1a17`, accent
+terracotta `#8a5a3b`, Instrument Serif en display, IBM Plex Mono pour les labels, angles
+vifs. Aucun texte en italique (choix explicite).
+
+**Images :** Pexels (licence libre, usage commercial sans attribution obligatoire), stockées
+dans `src/assets/` et optimisées en WebP au build par `astro:assets`. Aucun hotlink.
+
 **En ligne :** https://digladieux.github.io/spirit-landing
 
 ## Développer
