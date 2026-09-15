@@ -120,7 +120,7 @@ const faq = [
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif&family=Playfair+Display:wght@500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif&family=Playfair+Display:wght@500&family=Montserrat:wght@500&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -540,15 +540,18 @@ const faq = [
         top: 100%;
         left: 0;
         width: 100%;
-        height: calc(var(--nav-height) * 2 + 1rem);
+        height: calc(var(--nav-height) * 2 + 0.5rem);
         display: flex;
         justify-content: center;
         align-items: center;
         gap: clamp(2rem, 8vw, 7rem);
-        padding-top: 1rem;
+        padding-top: 0.5rem;
         background: var(--paper);
         border-bottom: 1px solid var(--line);
-        font-size: clamp(0.75rem, 2.25vw, 1.3125rem);
+        font-family: "Montserrat", Arial, sans-serif;
+        font-weight: 500;
+        font-size: clamp(0.5625rem, 1.6875vw, 0.984375rem);
+        text-transform: uppercase;
         line-height: 1.2;
       }
       .topbar-nav a {
@@ -560,7 +563,7 @@ const faq = [
       .topbar-nav a:hover { text-decoration: underline; }
       .page-scrolled .topbar-nav { visibility: hidden; pointer-events: none; }
       /* Conserver cet espace dans le document évite les sauts au changement de bandeau. */
-      .sheet::before { content: ''; display: block; height: calc(var(--nav-height) * 2 + 1rem); }
+      .sheet::before { content: ''; display: block; height: calc(var(--nav-height) * 2 + 0.5rem); }
       .intro-section { padding: 3rem var(--pad); border-bottom: 1px solid var(--line); }
       .intro-section h2 { margin: 0; }
       @media (max-width: 36rem) {
