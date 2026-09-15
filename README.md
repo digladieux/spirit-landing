@@ -16,7 +16,7 @@ vifs. Aucun texte en italique (choix explicite).
 **Images :** Pexels (licence libre, usage commercial sans attribution obligatoire), stockées
 dans `src/assets/` et optimisées en WebP au build par `astro:assets`. Aucun hotlink.
 
-**En ligne :** https://digladieux.github.io/spirit-landing
+**En ligne :** https://julieribreau.github.io/spirit-landing
 
 ## Développer
 
