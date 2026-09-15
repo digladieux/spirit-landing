@@ -165,11 +165,11 @@ const faq = [
       </div>
       <!-- ───────────── HERO ───────────── -->
       <section class="hero" id="top">
-        <h1 class="hero-title">
-          Saturation, brouillard mental, irritabilité, perte de mémoire,<br />
-          difficulté à prendre des décisions, prioriser et rester lucide, …
-        </h1>
         <div class="hero-copy reveal">
+          <h1 class="hero-title">
+            Saturation, brouillard mental, irritabilité, perte de mémoire,<br />
+            difficulté à prendre des décisions, prioriser et rester lucide, …
+          </h1>
           <p class="lead">
             ÉCRIN conçoit une gamme de compléments alimentaires pour les femmes dont le
             quotidien — professionnel comme personnel — mobilise fortement les ressources
@@ -575,8 +575,8 @@ const faq = [
       .panorama { display: block; width: 100%; height: auto; margin: 0; }
       .panorama-copy {
         position: absolute;
-        top: 12%;
-        right: 2.5%;
+        top: 15%;
+        right: 1.5%;
         max-width: 55%;
         color: #ffffff;
         text-align: right;
@@ -730,7 +730,7 @@ const faq = [
 
       /* ── Hero ── */
       .hero {
-        padding: clamp(1.5rem, 3vw, 2.5rem) var(--pad) clamp(3rem, 6vw, 5rem);
+        padding: clamp(2rem, 4vw, 3.5rem) var(--pad) clamp(3rem, 6vw, 5rem);
         display: grid;
         grid-template-columns: 1fr;
         gap: clamp(2.5rem, 5vw, 4rem);
@@ -743,11 +743,13 @@ const faq = [
         }
       }
 
+      .hero-copy { align-self: start; }
+      .hero-copy .lead { font-family: "Playfair Display", Georgia, serif; font-weight: 500; }
+
       .hero-title {
-        grid-column: 1 / -1;
-        margin: 0;
+        margin: 0 0 1.5rem;
         text-align: center;
-        font: 500 clamp(1.125rem, 2.2vw, 2rem)/1.45 "Playfair Display", Georgia, serif;
+        font: 500 clamp(1rem, 1.65vw, 1.5rem)/1.45 "Playfair Display", Georgia, serif;
         font-style: normal;
         letter-spacing: 0;
       }
