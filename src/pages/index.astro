@@ -165,12 +165,11 @@ const faq = [
       </div>
       <!-- ───────────── HERO ───────────── -->
       <section class="hero" id="top">
+        <h1 class="hero-title">
+          Saturation, brouillard mental, irritabilité, perte de mémoire,<br />
+          difficulté à prendre des décisions, prioriser et rester lucide, …
+        </h1>
         <div class="hero-copy reveal">
-          <p class="eyebrow">Préserver et restaurer ses ressources</p>
-          <h1>
-            Préserver ses ressources,<br />
-            <em>plutôt qu’apprendre à tenir.</em>
-          </h1>
           <p class="lead">
             ÉCRIN conçoit une gamme de compléments alimentaires pour les femmes dont le
             quotidien — professionnel comme personnel — mobilise fortement les ressources
@@ -552,7 +551,8 @@ const faq = [
         justify-content: center;
         align-items: center;
         gap: clamp(2.75rem, 11vw, 10rem);
-        padding-top: 0.5rem;
+        padding-top: 0;
+        padding-bottom: 0.5rem;
         background: #ffffff;
         border-bottom: 1px solid var(--line);
         font-family: "Montserrat", Arial, sans-serif;
@@ -575,8 +575,8 @@ const faq = [
       .panorama { display: block; width: 100%; height: auto; margin: 0; }
       .panorama-copy {
         position: absolute;
-        top: 18%;
-        right: 4%;
+        top: 12%;
+        right: 2.5%;
         max-width: 55%;
         color: #ffffff;
         text-align: right;
@@ -730,7 +730,7 @@ const faq = [
 
       /* ── Hero ── */
       .hero {
-        padding: clamp(3rem, 7vw, 5.75rem) var(--pad) clamp(3rem, 6vw, 5rem);
+        padding: clamp(1.5rem, 3vw, 2.5rem) var(--pad) clamp(3rem, 6vw, 5rem);
         display: grid;
         grid-template-columns: 1fr;
         gap: clamp(2.5rem, 5vw, 4rem);
@@ -741,6 +741,15 @@ const faq = [
         .hero {
           grid-template-columns: 1.15fr 0.85fr;
         }
+      }
+
+      .hero-title {
+        grid-column: 1 / -1;
+        margin: 0;
+        text-align: center;
+        font: 500 clamp(1.125rem, 2.2vw, 2rem)/1.45 "Playfair Display", Georgia, serif;
+        font-style: normal;
+        letter-spacing: 0;
       }
 
       .statut {
