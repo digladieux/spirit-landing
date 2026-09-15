@@ -1,6 +1,6 @@
-# SPIRIT — landing page de test d'intérêt
+# ÉCRIN — landing page de test d'intérêt
 
-Page unique (Astro, statique) destinée à mesurer l'intérêt pour SPIRIT : une gamme de
+Page unique (Astro, statique) destinée à mesurer l'intérêt pour ÉCRIN : une gamme de
 compléments alimentaires pour les femmes actives dont le quotidien mobilise fortement les
 ressources physiques et mentales.
 
@@ -16,13 +16,13 @@ vifs. Aucun texte en italique (choix explicite).
 **Images :** Pexels (licence libre, usage commercial sans attribution obligatoire), stockées
 dans `src/assets/` et optimisées en WebP au build par `astro:assets`. Aucun hotlink.
 
-**En ligne :** https://digladieux.github.io/spirit-landing
+**En ligne :** https://julieribreau.github.io/ecrin-landing
 
 ## Développer
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/spirit-landing
+npm run dev      # http://localhost:4321/é-landing
 npm run build
 ```
 
