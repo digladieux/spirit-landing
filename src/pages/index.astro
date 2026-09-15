@@ -130,10 +130,25 @@ const faq = [
 
     <header class="topbar">
       <div class="topbar-inner">
+        <button class="search-toggle" type="button" aria-label="Rechercher dans la page" aria-haspopup="dialog">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg>
+        </button>
         <a class="logo" href="#top">ÉCRIN</a>
         <span class="topbar-note">Bientôt disponible</span>
       </div>
     </header>
+
+
+    <dialog class="page-search" aria-labelledby="search-title">
+      <div class="search-heading">
+        <h2 id="search-title">Rechercher dans la page</h2>
+        <button class="search-close" type="button" aria-label="Fermer la recherche">×</button>
+      </div>
+      <label for="page-query">Mot ou expression</label>
+      <input id="page-query" type="search" placeholder="Énergie, formule, récupération…" autocomplete="off" />
+      <p class="search-status" role="status" aria-live="polite"></p>
+      <ul class="search-results"></ul>
+    </dialog>
 
     <main id="contenu" class="sheet">
       <!-- ───────────── HERO ───────────── -->
@@ -531,19 +546,54 @@ const faq = [
 
       @media (max-width: 36rem) {
         .topbar-inner {
-          grid-template-columns: 1fr;
+          grid-template-columns: 1fr auto 1fr;
           gap: 0.75rem;
         }
 
         .logo {
-          grid-column: 1;
+          grid-column: 2;
         }
 
         .topbar-note {
+          grid-column: 1 / -1;
           justify-self: center;
           text-align: center;
         }
       }
+
+
+      .search-toggle, .search-close {
+        border: 0;
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+      }
+      .search-toggle { grid-column: 1; grid-row: 1; justify-self: start; }
+      .logo { grid-row: 1; }
+      .search-close { font-size: 30px; flex-shrink: 0; }
+      .page-search {
+        width: min(640px, calc(100% - 2rem));
+        max-height: 80dvh;
+        padding: clamp(1.25rem, 4vw, 2rem);
+        border: 1px solid var(--line);
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .page-search::backdrop { background: rgb(28 26 23 / 45%); }
+      .search-heading { display: flex; align-items: start; justify-content: space-between; gap: 1rem; }
+      .search-heading h2 { font-size: 1.8rem; }
+      .page-search label { display: block; margin-bottom: .5rem; }
+      #page-query { width: 100%; padding: .85rem; border: 1px solid var(--field); background: white; font: inherit; color: var(--ink); }
+      .search-status { color: var(--muted); font-size: .9rem; }
+      .search-results { list-style: none; padding: 0; margin: 0; }
+      .search-results button { width: 100%; text-align: left; font: inherit; color: var(--ink); padding: 1rem 0; background: transparent; border: 0; border-top: 1px solid var(--line); cursor: pointer; }
+      .search-results button:hover { color: var(--accent); }
+      .search-destination { outline: 2px solid var(--accent); outline-offset: 5px; }
+      main h1, main h2, main h3, main p, main li, main summary, main figcaption, main .spec-texte, main .constat-texte, main .constat-titre, .mentions { scroll-margin-top: 10rem; }
 
       /* ── Typo commune ── */
       .eyebrow,
@@ -561,7 +611,7 @@ const faq = [
       }
 
       h1 {
-        font: 400 clamp(2.5rem, 6.4vw, 4.125rem) / 1.06 var(--serif);
+        font: 400 clamp(3rem, 7.5vw, 5rem) / 1.06 var(--serif);
         letter-spacing: -0.015em;
         margin: 0 0 1.75rem;
         text-wrap: pretty;
@@ -1140,6 +1190,56 @@ const faq = [
         );
         cibles.forEach((el) => observateur.observe(el));
       }
+
+      const searchDialog = document.querySelector<HTMLDialogElement>('.page-search')!;
+      const searchToggle = document.querySelector<HTMLButtonElement>('.search-toggle')!;
+      const searchInput = document.querySelector<HTMLInputElement>('#page-query')!;
+      const searchResults = document.querySelector<HTMLUListElement>('.search-results')!;
+      const searchStatus = document.querySelector<HTMLElement>('.search-status')!;
+      const searchable = [...document.querySelectorAll<HTMLElement>('main h1, main h2, main h3, main p, main li, main summary, main figcaption, main .spec-texte, main .constat-texte, main .constat-titre, .mentions')]
+        .filter((el) => !el.closest('form'));
+      const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('fr').replace(/\s+/g, ' ').trim();
+      let destination: HTMLElement | null = null;
+      const clearDestination = () => {
+        if (!destination) return;
+        destination.classList.remove('search-destination');
+        if (destination.dataset.searchTabindex === 'added') {
+          destination.removeAttribute('tabindex');
+          delete destination.dataset.searchTabindex;
+        }
+        destination = null;
+      };
+      const search = () => {
+        searchResults.replaceChildren();
+        const query = normalize(searchInput.value);
+        if (!query) { searchStatus.textContent = 'Saisissez un mot pour retrouver un passage.'; return; }
+        const matches = searchable.filter((el) => normalize(el.textContent || '').includes(query));
+        searchStatus.textContent = matches.length ? matches.length + (matches.length === 1 ? ' passage trouvé' : ' passages trouvés') : 'Aucun résultat. Essayez un autre mot.';
+        matches.forEach((el) => {
+          const item = document.createElement('li');
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.textContent = (el.textContent || '').replace(/\s+/g, ' ').trim();
+          button.addEventListener('click', () => {
+            clearDestination();
+            searchDialog.close();
+            el.closest('details')?.setAttribute('open', '');
+            el.closest('.reveal')?.classList.add('vu');
+            el.querySelectorAll('.reveal').forEach((child) => child.classList.add('vu'));
+            destination = el;
+            el.classList.add('search-destination');
+            if (!el.hasAttribute('tabindex')) { el.tabIndex = -1; el.dataset.searchTabindex = 'added'; }
+            el.focus({ preventScroll: true });
+            el.scrollIntoView({ block: 'center', behavior: doux ? 'instant' : 'smooth' });
+          });
+          item.append(button);
+          searchResults.append(item);
+        });
+      };
+      searchToggle.addEventListener('click', () => { clearDestination(); searchDialog.showModal(); search(); searchInput.focus(); });
+      document.querySelector('.search-close')!.addEventListener('click', () => searchDialog.close());
+      searchInput.addEventListener('input', search);
+
     </script>
   </body>
 </html>
