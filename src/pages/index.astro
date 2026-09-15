@@ -540,14 +540,15 @@ const faq = [
         top: 100%;
         left: 0;
         width: 100%;
-        height: var(--nav-height);
+        height: calc(var(--nav-height) * 2 + 1rem);
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: clamp(1.5rem, 5vw, 4rem);
+        gap: clamp(2rem, 8vw, 7rem);
+        padding-top: 1rem;
         background: var(--paper);
         border-bottom: 1px solid var(--line);
-        font-size: clamp(0.375rem, 1.125vw, 0.65625rem);
+        font-size: clamp(0.75rem, 2.25vw, 1.3125rem);
         line-height: 1.2;
       }
       .topbar-nav a {
@@ -559,7 +560,7 @@ const faq = [
       .topbar-nav a:hover { text-decoration: underline; }
       .page-scrolled .topbar-nav { visibility: hidden; pointer-events: none; }
       /* Conserver cet espace dans le document évite les sauts au changement de bandeau. */
-      .sheet::before { content: ''; display: block; height: var(--nav-height); }
+      .sheet::before { content: ''; display: block; height: calc(var(--nav-height) * 2 + 1rem); }
       .intro-section { padding: 3rem var(--pad); border-bottom: 1px solid var(--line); }
       .intro-section h2 { margin: 0; }
       @media (max-width: 36rem) {
