@@ -22,7 +22,7 @@ dans `src/assets/` et optimisées en WebP au build par `astro:assets`. Aucun hot
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/é-landing
+npm run dev      # http://localhost:4321/spirit-landing
 npm run build
 ```
 
