@@ -1230,7 +1230,7 @@ const faq = [
       const header = document.querySelector<HTMLElement>('.topbar')!;
       const topNavigation = document.querySelector<HTMLElement>('.topbar-nav')!;
       const updateNavigation = () => {
-        const scrolled = window.scrollY > 0;
+        const scrolled = window.scrollY > 120;
         document.documentElement.classList.toggle('page-scrolled', scrolled);
         topNavigation.inert = scrolled;
       };
