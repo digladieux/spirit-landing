@@ -544,13 +544,13 @@ const faq = [
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: clamp(2rem, 8vw, 7rem);
+        gap: clamp(2.75rem, 11vw, 10rem);
         padding-top: 0.5rem;
         background: var(--paper);
         border-bottom: 1px solid var(--line);
         font-family: "Montserrat", Arial, sans-serif;
         font-weight: 500;
-        font-size: clamp(0.5625rem, 1.6875vw, 0.984375rem);
+        font-size: clamp(0.5rem, 1.35vw, 0.7875rem);
         text-transform: uppercase;
         line-height: 1.2;
       }
@@ -565,7 +565,7 @@ const faq = [
       /* Conserver cet espace dans le document évite les sauts au changement de bandeau. */
       .sheet::before { content: ''; display: block; height: calc(var(--nav-height) * 2 + 0.5rem); }
       .intro-section { padding: 3rem var(--pad); border-bottom: 1px solid var(--line); }
-      .intro-section h2 { margin: 0; }
+      .intro-section h2 { margin: 0; text-align: center; text-transform: uppercase; }
       @media (max-width: 36rem) {
         :root { --nav-height: calc((1.925rem + 33px + 0.5625rem + 20.8px + 1px) / 4); }
       }
