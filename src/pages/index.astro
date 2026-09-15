@@ -136,6 +136,11 @@ const faq = [
         <a class="logo" href="#top">ÉCRIN</a>
         <span class="topbar-note">Bientôt disponible</span>
       </div>
+      <nav class="topbar-nav" aria-label="Présentation">
+        <a href="#le-concept">Le concept</a>
+        <a href="#a-propos">À propos</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
 
@@ -404,6 +409,16 @@ const faq = [
         </div>
       </section>
 
+      <section class="intro-section" aria-labelledby="le-concept">
+        <h2 id="le-concept" tabindex="-1">Le concept</h2>
+      </section>
+      <section class="intro-section" aria-labelledby="a-propos">
+        <h2 id="a-propos" tabindex="-1">À propos</h2>
+      </section>
+      <section class="intro-section" aria-labelledby="contact">
+        <h2 id="contact" tabindex="-1">Contact</h2>
+      </section>
+
       <!-- ───────────── CTA ───────────── -->
       <section class="cta" id="liste">
         <div class="reveal">
@@ -515,6 +530,40 @@ const faq = [
         z-index: 20;
         background: var(--paper);
         border-bottom: 1px solid var(--line);
+      }
+
+      :root {
+        --nav-height: calc((2.25rem + max(33px, clamp(1.725rem, 5.175vw, 3.01875rem)) + 1px) / 4);
+      }
+      .topbar-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        height: var(--nav-height);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(1.5rem, 5vw, 4rem);
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        font-size: clamp(0.375rem, 1.125vw, 0.65625rem);
+        line-height: 1.2;
+      }
+      .topbar-nav a {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        text-decoration: none;
+      }
+      .topbar-nav a:hover { text-decoration: underline; }
+      .page-scrolled .topbar-nav { visibility: hidden; pointer-events: none; }
+      /* Conserver cet espace dans le document évite les sauts au changement de bandeau. */
+      .sheet::before { content: ''; display: block; height: var(--nav-height); }
+      .intro-section { padding: 3rem var(--pad); border-bottom: 1px solid var(--line); }
+      .intro-section h2 { margin: 0; }
+      @media (max-width: 36rem) {
+        :root { --nav-height: calc((1.925rem + 33px + 0.5625rem + 20.8px + 1px) / 4); }
       }
 
       .topbar-inner {
@@ -1174,6 +1223,31 @@ const faq = [
     </style>
 
     <script>
+      const header = document.querySelector<HTMLElement>('.topbar')!;
+      const topNavigation = document.querySelector<HTMLElement>('.topbar-nav')!;
+      const updateNavigation = () => {
+        const scrolled = window.scrollY > 0;
+        document.documentElement.classList.toggle('page-scrolled', scrolled);
+        topNavigation.inert = scrolled;
+      };
+      const sizeNavigation = () => {
+        document.documentElement.style.setProperty('--nav-height', header.getBoundingClientRect().height / 4 + 'px');
+      };
+      updateNavigation();
+      sizeNavigation();
+      window.addEventListener('scroll', updateNavigation, { passive: true });
+      window.addEventListener('pageshow', updateNavigation);
+      new ResizeObserver(sizeNavigation).observe(header);
+      topNavigation.querySelectorAll<HTMLAnchorElement>('a').forEach((link) => {
+        link.addEventListener('click', (event) => {
+          const target = document.getElementById(link.hash.slice(1));
+          if (!target) return;
+          event.preventDefault();
+          target.focus({ preventScroll: true });
+          target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
+          history.replaceState(null, '', link.hash);
+        });
+      });
       // ponytail: IntersectionObserver plutôt que animation-timeline, qui manque encore à Safari
       const cibles = document.querySelectorAll('.reveal');
       const doux = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
